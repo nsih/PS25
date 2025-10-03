@@ -1,4 +1,7 @@
-t = input()
-t += '??!'
+a = input()
+b = input()
 
-print(t)
+print(a*(b%10))
+print( (a*(b%100)) - (a*(b%10)) )
+print( a*(b%10) )
+print(a*b)
