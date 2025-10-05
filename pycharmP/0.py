@@ -1,6 +1,9 @@
 #a,b,c = map(int, input().split())
+import sys
 
-n = int(input())
 
-for i in range(1, 10):
-    print(f'{n} * {i} = {n*i}')
+for l in sys.stdin:
+    a, b = map(int, l.split())
+    print(a + b)
+
+#파이참 EOF는 ctrl+D
