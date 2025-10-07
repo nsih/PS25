@@ -2,8 +2,12 @@
 import sys
 
 n = int(sys.stdin.readline())
+
 lst = list(map(int,sys.stdin.readline().split()))
 
 m = max(lst)
 
-print(sum(lst)/m * 100 / n)
+for i in range(len(lst)):
+    lst[i] = (lst[i]/m)*100
+
+print( sum(lst) / len(lst) )
