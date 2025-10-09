@@ -2,5 +2,6 @@
 #import string
 import sys
 
-for line in sys.stdin:
-    print(line,end='')
+s = sys.stdin.readline()
+
+print(len(s.split()))
