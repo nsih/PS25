@@ -16,4 +16,3 @@ n = int(sys.stdin.readline())
 
 print(2 ** n - 1)
 hanoi(n, 1, 2, 3)
-
