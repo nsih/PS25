@@ -6,7 +6,7 @@ def backtrack(depth):
         return
     for i in range(depth, n + 1):
         path.append(i)
-        backtrack(i )
+        backtrack(i + 1)
         path.pop()
 
 
