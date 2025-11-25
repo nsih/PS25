@@ -1,13 +1,23 @@
 import sys
 
-n, m = map(int, sys.stdin.readline().split())
-lst = list(map(int, sys.stdin.readline().split()))
-prefix_sum = [0]
+s = sys.stdin.readline().strip()
+q = int(sys.stdin.readline())
 
-for i in range(n):
-    prefix_sum.append(lst[i] + prefix_sum[-1])
+psum = [[0] * 26 for _ in range(len(s) + 1)]
 
-for _ in range(m):
-    a, b = map(int, sys.stdin.readline().split())
+for i in range(1, len(s) + 1):
+    for j in range(26):
+        if ord(s[i - 1]) - ord('a') == j:
+            psum[i][j] = psum[i - 1][j] + 1
+        else:
+            psum[i][j] = psum[i - 1][j]
 
-    print(prefix_sum[b] - prefix_sum[a - 1])
+qlst = []
+for _ in range(q):
+    a, l, r = sys.stdin.readline().split()
+
+    a = ord(a) - ord('a')
+    l = int(l)
+    r = int(r)
+
+    print(psum[r + 1][a] - psum[l][a])
