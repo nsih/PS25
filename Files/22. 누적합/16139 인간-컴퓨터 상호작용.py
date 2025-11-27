@@ -4,18 +4,19 @@ import math
 n, m = map(int, sys.stdin.readline().split())
 lst = list(map(int, sys.stdin.readline().split()))
 
-remainder_count = [0] * m
+rcnt = [0] * m	#누적합을 m으로 나눴을때 나머지 기록
+psum = 0	#누적합 기록
 
-prefix_sum = 0
+#누적합 갱신하면서 rcnt 갱신
 for i in lst:
-    prefix_sum += i
-    remainder_count[prefix_sum % m] += 1
+    psum += i
+    rcnt[psum % m] += 1
 
-# 1. 나머지가 0인 구간은 그 자체로 정답 (0번 인덱스부터 더한 구간)
-res = remainder_count[0]
+res = rcnt[0] #이미 나눠떨어지는거 기록
 
-# 2. 나머지가 같은 두 지점을 연결하는 구간 (조합 nC2)
+#나머지가 같은거 두개를 빼면 m으로 나눠떨어지기 때문에
+#같은 나머지 개수마다 두개씩 묶는 누적합 두개의 Combination을 res 추가
 for i in range(m):
-    res += math.comb(remainder_count[i], 2)
+    res += math.comb(rcnt[i], 2)
 
 print(res)
