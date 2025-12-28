@@ -1,6 +1,5 @@
 import sys
 
-# 1. 입력 받기
 N, K = map(int, sys.stdin.readline().split())
 P = 1000000007
 
