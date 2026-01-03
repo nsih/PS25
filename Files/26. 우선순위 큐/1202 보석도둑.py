@@ -26,3 +26,11 @@ for limit in bags:
         total_profit += -heapq.heappop(gem_pool)
 
 print(total_profit)
+
+# 그리디 = 정렬해야한다
+# 보석 목록, 가방 한계목록 정렬
+# 가지고 갈 수 있는 보석 목록(gem pool) 선언
+
+# 각 가방마다
+    # 각 가방의 무게한계 안쪽의 보석이면 gem pool에 넣는다
+    # 다넣고 gem pool이 있으면 gempool 최댓값 결과값에 추가한다.
