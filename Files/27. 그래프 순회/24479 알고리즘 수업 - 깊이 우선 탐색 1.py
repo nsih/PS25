@@ -3,47 +3,42 @@ import sys
 sys.setrecursionlimit(10 ** 6)
 
 def solve():
-    #정점 수, 간선 수, 시작 정점
     n, m, r = map(int, sys.stdin.readline().split())
 
-    #n+1 길이의 그래프
-    graph = [[] for _ in range(n + 1)]
+    #for로 해야 리스트 내부에 독립적인 리스트가 생긴다.
+    graph = [[] for _ in range(n+1)]
 
-    #간선수 만큼 graph[u](정점)에 연결된 다른 정점(간선)정보를 추가한다.
+    #간선추가
     for _ in range(m):
-        u, v = map(int, sys.stdin.readline().split())
+        u,v = map(int, sys.stdin.readline().split())
         graph[u].append(v)
         graph[v].append(u)
 
-    #정점에 연결된 정점(간선정보)들 정렬
-    for i in range(1, n + 1):
+    #정점에 붙은 간선정보를 오름차순으로 정렬
+    for i in range(1, n+1):
         graph[i].sort()
     
+    #방문순서 데이터
+    visited = [0]*(n+1)
     
-    #그래프 크기의 방문순서 정보 리스트
-    visited = [0] * (n + 1)
-
-    #순서
+    #첫 방문은 초기화
     order = 1
+    visited[r] = order
 
     def dfs(node):
         nonlocal order
-
-        #시작정점 r 부터 시작해서 순서를 늘려간다.
-        visited[node] = order
         order += 1
 
-        #정점마다 정점에 이러진 애들 돌면서
-        #이어진 간선이 방문한적 없으면 dfs(재귀)
-        #이어진 간선이 방문한적 있으면 return
-        for neighbor in graph[node]:
-            if visited[neighbor] == 0:
-                dfs(neighbor)
+        #간선을 타고 정점을 돌면서 오름차순으로 dfs
+        for item in graph[node]:
+            if visited[item] == 0:
+                visited[item] = order
+                dfs(item)
 
     dfs(r)
 
-    sys.stdout.write('\n'.join(map(str, visited[1:])) + '\n')
+    for i in range(1,n+1):
+        print(visited[i],end='\n')
 
+#main
 solve()
-
-#DFS는 스택
