@@ -17,10 +17,10 @@ def solve():
     #정점에 붙은 간선정보를 오름차순으로 정렬
     for i in range(1, n+1):
         graph[i].sort()
-    
+
     #방문순서 데이터
     visited = [0]*(n+1)
-    
+
     #첫 방문은 초기화
     order = 1
     visited[r] = order
@@ -38,7 +38,7 @@ def solve():
     dfs(r)
 
     for i in range(1,n+1):
-        print(visited[i],end='\n')
+        print(visited[i])
 
 #main
 solve()

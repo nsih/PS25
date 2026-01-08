@@ -1,5 +1,7 @@
 import sys
-from collections import deque
+
+sys.setrecursionlimit(10 ** 6)
+
 
 def sol():
     n,m,r = map(int,sys.stdin.readline().split())
@@ -12,25 +14,27 @@ def sol():
         graph[v].append(u)
 
     for idx in range(1,n+1):
-        graph[idx].sort()
+        graph[idx].sort(reverse=True)
 
     visited = [0] * (n+1)
 
     order = 1
     visited[r] = order
+    order += 1
 
-    queue = deque([r])
+    def dfs(node):
+        nonlocal order
 
-    while queue:
-        node = queue.popleft()
-
-        for neighbor in graph[node]:
-            if visited[neighbor] == 0:
+        for idx in graph[node]:
+            if visited[idx] == 0:
+                visited[idx] = order
                 order += 1
-                visited[neighbor] = order
-                queue.append(neighbor)
+                dfs(idx)
+
+    dfs(r)
 
     for i in range(1,n+1):
         print(visited[i])
+
 
 sol()
