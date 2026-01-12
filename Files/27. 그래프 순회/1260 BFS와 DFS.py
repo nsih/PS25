@@ -27,7 +27,7 @@ def sol():
         for item in graph[node]:
             if visited_dfs[item] == 0:
                 dfs(item)
-
+                
     #
     visited_bfs = [0] * (n + 1)
     bLst = []
